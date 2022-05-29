@@ -1,41 +1,25 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'weather_forecast_dto.g.dart';
+
+@JsonSerializable()
 class WeatherForecastDTO {
   City? city;
   String? cod;
   double? message;
   int? cnt;
+  @JsonKey(name: 'list')
   List<WeatherForecast>? weatherForecasts;
 
   WeatherForecastDTO(
       {this.city, this.cod, this.message, this.cnt, this.weatherForecasts});
 
-  WeatherForecastDTO.fromJson(Map<String, dynamic> json) {
-    city = json['city'] != null ? new City.fromJson(json['city']) : null;
-    cod = json['cod'];
-    message = json['message'];
-    cnt = json['cnt'];
-    if (json['list'] != null) {
-      weatherForecasts = <WeatherForecast>[];
-      json['list'].forEach((v) {
-        weatherForecasts!.add(new WeatherForecast.fromJson(v));
-      });
-    }
-  }
+  factory WeatherForecastDTO.fromJson(Map<String, dynamic> data) =>
+      _$WeatherForecastDTOFromJson(data);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.city != null) {
-      data['city'] = this.city!.toJson();
-    }
-    data['cod'] = this.cod;
-    data['message'] = this.message;
-    data['cnt'] = this.cnt;
-    if (this.weatherForecasts != null) {
-      data['list'] = this.weatherForecasts!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$WeatherForecastDTOToJson(this);
 }
 
+@JsonSerializable()
 class City {
   int? id;
   String? name;
@@ -52,48 +36,24 @@ class City {
       this.population,
       this.timezone});
 
-  City.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    coord = json['coord'] != null ? new Coord.fromJson(json['coord']) : null;
-    country = json['country'];
-    population = json['population'];
-    timezone = json['timezone'];
-  }
+  factory City.fromJson(Map<String, dynamic> data) => _$CityFromJson(data);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    if (this.coord != null) {
-      data['coord'] = this.coord!.toJson();
-    }
-    data['country'] = this.country;
-    data['population'] = this.population;
-    data['timezone'] = this.timezone;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$CityToJson(this);
 }
 
+@JsonSerializable()
 class Coord {
   double? lon;
   double? lat;
 
   Coord({this.lon, this.lat});
 
-  Coord.fromJson(Map<String, dynamic> json) {
-    lon = json['lon'];
-    lat = json['lat'];
-  }
+  factory Coord.fromJson(Map<String, dynamic> data) => _$CoordFromJson(data);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['lon'] = this.lon;
-    data['lat'] = this.lat;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$CoordToJson(this);
 }
 
+@JsonSerializable()
 class WeatherForecast {
   int? dt;
   int? sunrise;
@@ -126,56 +86,13 @@ class WeatherForecast {
       this.pop,
       this.rain});
 
-  WeatherForecast.fromJson(Map<String, dynamic> json) {
-    dt = json['dt'];
-    sunrise = json['sunrise'];
-    sunset = json['sunset'];
-    temp = json['temp'] != null ? new Temp.fromJson(json['temp']) : null;
-    feelsLike = json['feels_like'] != null
-        ? new FeelsLike.fromJson(json['feels_like'])
-        : null;
-    pressure = json['pressure']?.toDouble();
-    humidity = json['humidity']?.toDouble();
-    if (json['weather'] != null) {
-      weather = <Weather>[];
-      json['weather'].forEach((v) {
-        weather!.add(new Weather.fromJson(v));
-      });
-    }
-    speed = json['speed']?.toDouble();
-    deg = json['deg']?.toDouble();
-    gust = json['gust']?.toDouble();
-    clouds = json['clouds']?.toDouble();
-    pop = json['pop']?.toDouble();
-    rain = json['rain']?.toDouble();
-  }
+  factory WeatherForecast.fromJson(Map<String, dynamic> data) =>
+      _$WeatherForecastFromJson(data);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['dt'] = this.dt;
-    data['sunrise'] = this.sunrise;
-    data['sunset'] = this.sunset;
-    if (this.temp != null) {
-      data['temp'] = this.temp!.toJson();
-    }
-    if (this.feelsLike != null) {
-      data['feels_like'] = this.feelsLike!.toJson();
-    }
-    data['pressure'] = this.pressure;
-    data['humidity'] = this.humidity;
-    if (this.weather != null) {
-      data['weather'] = this.weather!.map((v) => v.toJson()).toList();
-    }
-    data['speed'] = this.speed;
-    data['deg'] = this.deg;
-    data['gust'] = this.gust;
-    data['clouds'] = this.clouds;
-    data['pop'] = this.pop;
-    data['rain'] = this.rain;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$WeatherForecastToJson(this);
 }
 
+@JsonSerializable()
 class Temp {
   double? day;
   double? min;
@@ -186,27 +103,12 @@ class Temp {
 
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
 
-  Temp.fromJson(Map<String, dynamic> json) {
-    day = json['day']?.toDouble();
-    min = json['min']?.toDouble();
-    max = json['max']?.toDouble();
-    night = json['night']?.toDouble();
-    eve = json['eve']?.toDouble();
-    morn = json['morn']?.toDouble();
-  }
+  factory Temp.fromJson(Map<String, dynamic> data) => _$TempFromJson(data);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['day'] = this.day;
-    data['min'] = this.min;
-    data['max'] = this.max;
-    data['night'] = this.night;
-    data['eve'] = this.eve;
-    data['morn'] = this.morn;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$TempToJson(this);
 }
 
+@JsonSerializable()
 class FeelsLike {
   double? day;
   double? night;
@@ -215,23 +117,13 @@ class FeelsLike {
 
   FeelsLike({this.day, this.night, this.eve, this.morn});
 
-  FeelsLike.fromJson(Map<String, dynamic> json) {
-    day = json['day']?.toDouble();
-    night = json['night']?.toDouble();
-    eve = json['eve']?.toDouble();
-    morn = json['morn']?.toDouble();
-  }
+  factory FeelsLike.fromJson(Map<String, dynamic> data) =>
+      _$FeelsLikeFromJson(data);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['day'] = this.day;
-    data['night'] = this.night;
-    data['eve'] = this.eve;
-    data['morn'] = this.morn;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$FeelsLikeToJson(this);
 }
 
+@JsonSerializable()
 class Weather {
   int? id;
   String? main;
@@ -240,19 +132,8 @@ class Weather {
 
   Weather({this.id, this.main, this.description, this.icon});
 
-  Weather.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    main = json['main'];
-    description = json['description'];
-    icon = json['icon'];
-  }
+  factory Weather.fromJson(Map<String, dynamic> data) =>
+      _$WeatherFromJson(data);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['main'] = this.main;
-    data['description'] = this.description;
-    data['icon'] = this.icon;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$WeatherToJson(this);
 }

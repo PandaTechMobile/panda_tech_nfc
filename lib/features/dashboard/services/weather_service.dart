@@ -1,10 +1,11 @@
 import 'package:panda_tech_nfc/global/services/api_service_base.dart';
 
+import '../../../constants/api_constants.dart';
 import '../models/weather_forecast_dto.dart';
 
 class WeatherService extends ApiServiceBase {
-  static const String _baseEndpoint = 'data/2.5/forecast/daily';
-  static const String _apiKey = 'a17df150ea36ea4d7c2047fb2b53177e';
+  static const String _baseEndpoint = ApiConstants.baseWeatherForecastEndpoint;
+  static const String _apiKey = ApiConstants.apiWeatherKey;
 
   Future<List<WeatherForecast>> getWeeklyWeatherForecast(
       String location, String countryCode) async {

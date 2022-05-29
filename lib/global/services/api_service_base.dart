@@ -2,14 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:panda_tech_nfc/constants/api_constants.dart';
 import 'package:panda_tech_nfc/features/dashboard/models/weather_forecast_dto.dart';
 
 class ApiServiceBase {
-  const ApiServiceBase();
+  static const String _baseApi = ApiConstants.baseWeatherApi;
 
-  static const String _baseApi = 'api.openweathermap.org';
-  //static const String _path = 'data/2.5/weather';
-  //static const String _apiKey = 'a17df150ea36ea4d7c2047fb2b53177e';
+  const ApiServiceBase();
 
   Future<T> get<T, K>(String endpoint, Map<String, dynamic> parameters) async {
     dynamic responseJson;

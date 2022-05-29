@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('lib/assets/images/animated_background.gif'),
+                image: AssetImage('assets/images/animated_background.gif'),
                 fit: BoxFit.cover)),
         padding: const EdgeInsets.all(16.0),
         child: Center(
