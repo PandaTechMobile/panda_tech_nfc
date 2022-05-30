@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:panda_tech_nfc/features/dashboard/models/weather_forecast_dto.dart';
 import 'package:panda_tech_nfc/features/dashboard/services/weather_service.dart';
 
-import '../../auth/login/screens/login_page.dart';
+import '../../authentication/login/view/login_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key, required String this.email}) : super(key: key);

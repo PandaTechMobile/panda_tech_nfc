@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:panda_tech_nfc/features/auth/login/screens/login_page.dart';
+
+import 'features/authentication/login/view/login_page.dart';
 
 void main() {
   runApp(PandaTechNFCApp());

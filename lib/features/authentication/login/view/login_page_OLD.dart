@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:panda_tech_nfc/features/dashboard/screens/dashboard_page.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPageOLD extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginPageOLDState createState() => _LoginPageOLDState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageOLDState extends State<LoginPageOLD> {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -47,10 +47,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       key: scaffoldKey,
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/animated_background.gif'),
-                fit: BoxFit.cover)),
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Form(
