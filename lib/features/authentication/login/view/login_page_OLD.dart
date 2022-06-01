@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:panda_tech_nfc/features/dashboard/screens/dashboard_page.dart';
+import 'package:panda_tech_nfc/features/dashboard/screens/dashboard_page_OLD.dart';
 
 class LoginPageOLD extends StatefulWidget {
   @override
@@ -29,7 +29,8 @@ class _LoginPageOLDState extends State<LoginPageOLD> {
     if (_validateForm()) {
       await Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => DashboardPage(email: _email!)),
+        MaterialPageRoute(
+            builder: (context) => DashboardPageOLD(email: _email!)),
       );
 
       // _email = null;

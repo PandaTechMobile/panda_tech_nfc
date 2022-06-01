@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 
 import '../login.dart';
 
-import '../../../dashboard/screens/dashboard_page.dart';
+import '../../../dashboard/view/dashboard_page.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);

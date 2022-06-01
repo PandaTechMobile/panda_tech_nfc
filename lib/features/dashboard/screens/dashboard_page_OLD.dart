@@ -7,16 +7,17 @@ import 'package:panda_tech_nfc/features/dashboard/services/weather_service.dart'
 
 import '../../authentication/login/view/login_page.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({Key? key, required String this.email}) : super(key: key);
+class DashboardPageOLD extends StatefulWidget {
+  const DashboardPageOLD({Key? key, required String this.email})
+      : super(key: key);
 
   final String email;
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState(email);
+  State<DashboardPageOLD> createState() => _DashboardPageOLDState(email);
 }
 
-class _DashboardPageState extends State<DashboardPage>
+class _DashboardPageOLDState extends State<DashboardPageOLD>
     with TickerProviderStateMixin {
   final WeatherService _weatherService = WeatherService();
   final _locationName = 'Newcastle';
@@ -24,8 +25,10 @@ class _DashboardPageState extends State<DashboardPage>
   final String email;
   var _welcomeText = "Welcome ";
   var _locationForecastText = '7 Day forecast for ';
+  // TODO -> Make it change based on forecast
+  var _showRainAnimation = false;
 
-  _DashboardPageState(this.email) {
+  _DashboardPageOLDState(this.email) {
     _welcomeText = "Welcome " + email;
     _locationForecastText = '7 Day forecast for ' + _locationName;
   }
@@ -37,7 +40,22 @@ class _DashboardPageState extends State<DashboardPage>
         title: Text('Dashboard'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  const SnackBar(
+                    content: Text('TODO -> Show Settings page'),
+                  ),
+                );
+            },
+          ),
+          IconButton(
+            icon: const Icon(
               Icons.logout,
               color: Colors.white,
             ),
@@ -58,7 +76,7 @@ class _DashboardPageState extends State<DashboardPage>
             opacityChangeRate: 0.25,
             minOpacity: 0.1,
             maxOpacity: 1,
-            particleCount: 70,
+            particleCount: _showRainAnimation ? 70 : 0,
             spawnMaxRadius: 3.0,
             spawnMinRadius: 1.0,
             spawnMaxSpeed: 100.0,
@@ -71,20 +89,22 @@ class _DashboardPageState extends State<DashboardPage>
             children: [
               Container(
                 padding: const EdgeInsets.all(16.0),
+                width: double.infinity,
                 child: Text(
                   _welcomeText,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                  style: const TextStyle(
+                    fontSize: 20,
                   ),
+                  textAlign: TextAlign.start,
                 ),
               ),
               Container(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  _locationForecastText,
-                  style: TextStyle(
-                    fontSize: 20,
+                  _locationName,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
